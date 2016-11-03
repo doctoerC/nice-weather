@@ -107,7 +107,7 @@ public class NiceWeatherDB {
 //从数据库中读取某城市下的所有县信息	
 	public List<Country> loadCountries(int cityId){
 		List<Country> list=new ArrayList<Country>();
-		Cursor cursor=db.query("Country", null, "cityId=?", new String[]{String.valueOf(cityId)},
+		Cursor cursor=db.query("Country", null, "city_Id=?", new String[]{String.valueOf(cityId)},
 				null, null, null);
 		if (cursor.moveToFirst()) {
 			do {
@@ -118,11 +118,12 @@ public class NiceWeatherDB {
 				country.setId(cursor.getInt(cursor.getColumnIndex("id")));
 				list.add(country);
 			} while (cursor.moveToNext());
+		}
 			if (cursor!=null) {
 				cursor.close();
 			}
 			
-		}
+		
 		return list;
 	}
 }

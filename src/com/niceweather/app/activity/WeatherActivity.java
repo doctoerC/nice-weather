@@ -17,6 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.niceweather.app.R;
+import com.niceweather.app.receiver.AutoUpdateReceiver;
+import com.niceweather.app.service.AutoUpdateService;
 import com.niceweather.app.util.HttpCallbackListener;
 import com.niceweather.app.util.HttpUtil;
 import com.niceweather.app.util.Utility;
@@ -130,7 +132,8 @@ private void showWeather() {
 	publishText.setText("今天"+prefs.getString("publish_time", "")+"发布");
 	weatherInfoLayout.setVisibility(View.VISIBLE);
 	cityNameText.setVisibility(View.VISIBLE);
-	
+	Intent intent=new Intent(this,AutoUpdateService.class);
+	startService(intent);
 }
 
 @Override
